@@ -8,7 +8,7 @@ def test_dark_theme_by_time():
     current_time = time(hour=23)
     # TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
 
-    is_dark_theme = current_time.hour not in (6, 22)
+    is_dark_theme = current_time.hour not in range(6, 22)
     assert is_dark_theme is True
 
 
@@ -25,7 +25,7 @@ def test_dark_theme_by_time_and_user_choice():
     # TODO переключите темную тему в зависимости от времени суток,
     #  но учтите что темная тема может быть включена вручную
 
-    is_dark_theme = dark_theme_enabled_by_user or current_time.hour not in (6, 22)
+    is_dark_theme = dark_theme_enabled_by_user or current_time.hour not in range(6, 22)
 
     assert is_dark_theme is True
 
@@ -71,6 +71,7 @@ def test_find_suitable_user():
 def print_function(function, *args, **kwargs):
     function_name = function.__name__.replace('_', " ").title()
     function_arguments = ', '.join([*args, *kwargs.values()])
+    print(f'{function_name} [{function_arguments}]')
     return f'{function_name} [{function_arguments}]'
 
 
